@@ -38,24 +38,23 @@ public class AccountServiceTest {
 	
 	
 
-	@DevTestVirtualService(serviceName = "UserServiceTest-EJB3UserControlBean", 
+	@DevTestVirtualService(serviceName = "UserServiceTest-EJB3AccountControlBean", 
 			port = 9081, basePath = "/itkoExamples/EJB3UserControlBean", 
-			workingFolder = "UserServiceTest/getListUser/EJB3UserControlBean", 
+			workingFolder = "AccountServiceTest/createUserWithCheckingAccount/EJB3AccountControlBean", 
 			requestDataProtocol = {
 			@Protocol(ProtocolType.DPH_SOAP) })
 	
 	@DevTestVirtualService(serviceName = "UserServiceTest-EJB3UserControlBean", 
-	port = 9081, basePath = "/itkoExamples/EJB3UserControlBean", 
-	workingFolder = "UserServiceTest/getListUser/EJB3UserControlBean", 
+	port = 9081, basePath = "/itkoExamples/EJB3AccountControlBean", 
+	workingFolder = "AccountServiceTest/createUserWithCheckingAccount/EJB3UserControlBean", 
 	requestDataProtocol = {
 	@Protocol(ProtocolType.DPH_SOAP) })
 	
-	@DevTestVirtualService(serviceName = "UserServiceTest-EJB3UserControlBean", 
-	port = 9081, basePath = "/itkoExamples/EJB3UserControlBean", 
-	workingFolder = "UserServiceTest/getListUser/EJB3UserControlBean", 
+	@DevTestVirtualService(serviceName = "UserServiceTest-TokenBean", 
+	port = 9081, basePath = "/itkoExamples/TokenBean", 
+	workingFolder = "UserServiceTest/getListUser/TokenBean", 
 	requestDataProtocol = {
 	@Protocol(ProtocolType.DPH_SOAP) })
-	
 	@Test
 	public void createUserWithCheckingAccount() {
 	

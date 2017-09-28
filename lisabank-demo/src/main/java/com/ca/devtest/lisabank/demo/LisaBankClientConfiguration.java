@@ -54,7 +54,6 @@ public class LisaBankClientConfiguration {
 
 		JaxWsProxyFactoryBean jaxWsProxyFactory = new JaxWsProxyFactoryBean();
 		jaxWsProxyFactory.setServiceClass(TokenBean.class);
-
 		jaxWsProxyFactory.setAddress(tokenServiceAddress);
 		return (TokenBean) jaxWsProxyFactory.create();
 	}
