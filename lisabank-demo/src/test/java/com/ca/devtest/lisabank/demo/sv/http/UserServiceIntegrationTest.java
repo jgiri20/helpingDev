@@ -24,7 +24,7 @@ import com.ca.devtest.sv.devtools.junit.VirtualServicesRule;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = LisaBankClientApplication.class)
 
-@DevTestVirtualServer(registryHost = "localhost", deployServiceToVse = "VSE" )
+@DevTestVirtualServer(registryHost = "localhost", deployServiceToVse = "VSE")
 public class UserServiceIntegrationTest {
 	static final Log logger = LogFactory.getLog(UserServiceIntegrationTest.class);
 	@Autowired
@@ -32,12 +32,7 @@ public class UserServiceIntegrationTest {
 	@Rule
 	public VirtualServicesRule rules = new VirtualServicesRule();
 
-
-	
-	@DevTestVirtualService(serviceName = "UserServiceTest-EJB3UserControlBean", 
-			port = 9081, basePath = "/itkoExamples/EJB3UserControlBean", 
-			workingFolder = "UserServiceTest/getListUser/EJB3UserControlBean", 
-			requestDataProtocol = {
+	@DevTestVirtualService(serviceName = "UserServiceTest-EJB3UserControlBean", port = 9081, basePath = "/itkoExamples/EJB3UserControlBean", workingFolder = "UserServiceTest/getListUser/EJB3UserControlBean", requestDataProtocol = {
 			@Protocol(ProtocolType.DPH_SOAP) })
 	@Test
 	public void getListUser() {
@@ -55,24 +50,6 @@ public class UserServiceIntegrationTest {
 
 		assertEquals("Admin", user.getLname());
 
-	}
-	@DevTestVirtualService(serviceName = "UserServiceTest-getListUser0", 
-			port = 9081, basePath = "/itkoExamples/EJB3UserControlBean", 
-			workingFolder = "UserServiceTest/getListUser/EJB3UserControlBean0", 
-			requestDataProtocol = {
-			@Protocol(ProtocolType.DPH_SOAP) })
-		@Test
-	public void getListUser0() {
-		// Given
-
-		// When
-		User[] users = bankServices.getListUser();
-		// Then
-		printUsers(users);
-		assertNotNull(users);
-		assertEquals(0, users.length);
-
-		
 	}
 
 	private void printUsers(User[] users) {
