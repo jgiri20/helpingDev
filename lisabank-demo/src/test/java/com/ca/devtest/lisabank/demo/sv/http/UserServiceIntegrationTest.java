@@ -32,8 +32,10 @@ public class UserServiceIntegrationTest {
 	@Rule
 	public VirtualServicesRule rules = new VirtualServicesRule();
 
-	@DevTestVirtualService(serviceName = "UserServiceTest-EJB3UserControlBean", port = 9081, basePath = "/itkoExamples/EJB3UserControlBean", workingFolder = "UserServiceTest/getListUser/EJB3UserControlBean", requestDataProtocol = {
-			@Protocol(ProtocolType.DPH_SOAP) })
+	@DevTestVirtualService(serviceName = "UserServiceTest-EJB3UserControlBean", 
+			port = 9081, basePath = "/itkoExamples/EJB3UserControlBean",
+			workingFolder = "UserServiceTest/getListUser/EJB3UserControlBean",
+			requestDataProtocol = {@Protocol(ProtocolType.DPH_SOAP) })
 	@Test
 	public void getListUser() {
 		// Given
@@ -52,6 +54,10 @@ public class UserServiceIntegrationTest {
 
 	}
 
+	
+	/**
+	 * @param users
+	 */
 	private void printUsers(User[] users) {
 		for (User user : users) {
 			logger.info(user.getFname() + " " + user.getLname() + " " + user.getLogin());

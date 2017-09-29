@@ -38,7 +38,10 @@ public class SimpleDemo {
 	@Autowired
 	private BankService bankServices;
 
-
+	@DevTestVirtualService(serviceName = "UserServiceTest-EJB3UserControlBean", 
+			port = 9081, basePath = "/itkoExamples/EJB3UserControlBean",
+			workingFolder = "UserServiceTest/getListUser/EJB3UserControlBean",
+			requestDataProtocol = {@Protocol(ProtocolType.DPH_SOAP) })
 	@Test
 	public void getListUser() {
 		User[] users = bankServices.getListUser();
@@ -46,7 +49,17 @@ public class SimpleDemo {
 		assertEquals(9, users.length);
 	}
 
-	
+	@DevTestVirtualService(serviceName = "UserServiceTest-EJB3UserControlBean", 
+			port = 9081, basePath = "/itkoExamples/EJB3UserControlBean",
+			workingFolder = "UserServiceTest/getListUser/EJB3UserControlBean0",
+			requestDataProtocol = {@Protocol(ProtocolType.DPH_SOAP) })
+	@Test
+	public void getListUser0() {
+		User[] users = bankServices.getListUser();
+		assertNotNull(users);
+		assertEquals(0, users.length);
+	}
+
 	private void printUsers(User[] users) {
 		for (User user : users) {
 			logger.info(user.getFname() + " " + user.getLname() + " " + user.getLogin());
