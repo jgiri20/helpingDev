@@ -48,12 +48,8 @@ public class DevTesClientRRPairs {
 
 	}
 
-	@DevTestVirtualServiceFromVrs(serviceName = "demo", workingFolder = "rrpairs/soapWithVrs", 
-			vrsConfig = @Config(value = "transport.vrs", 
-				parameters = {
-						@Parameter(name = "port", value = "9002"), 
-						@Parameter(name = "basePath", value = "/lisa")
-						}))
+	@DevTestVirtualServiceFromVrs(serviceName = "demo", workingFolder = "rrpairs/soapWithVrs", vrsConfig = @Config(value = "transport.vrs", parameters = {
+			@Parameter(name = "port", value = "9002"), @Parameter(name = "basePath", value = "/lisa") }))
 	@Test
 	public void createSoapServicFromVrs() throws IOException, URISyntaxException {
 		int port = 7002;
@@ -67,11 +63,12 @@ public class DevTesClientRRPairs {
 
 	}
 
-	@DevTestVirtualServiceFromVrs(serviceName = "errorManagement", workingFolder = "rrpairs/errorManagement", 
-			vrsConfig = @Config(value = "errorManagement.vrs", 
-				parameters = {
-						@Parameter(name = "port", value = "8999"), 
-						@Parameter(name = "basePath", value = "/errorManagement")}))
+	@DevTestVirtualServiceFromVrs(serviceName = "errorManagement",
+			workingFolder = "rrpairs/errorManagement", 
+			vrsConfig = @Config(value = "errorManagement.vrs",
+			parameters = {
+			@Parameter(name = "port", value = "8999"), 
+			@Parameter(name = "basePath", value = "/errorManagement") }))
 	@Test
 	public void createErrorManagementSVFromVrs() throws IOException, URISyntaxException {
 		int port = 8999;
@@ -84,22 +81,21 @@ public class DevTesClientRRPairs {
 		String response = soapclient.callService(path, request);
 
 	}
-	
-	
 
-	@DevTestVirtualServiceFromVrs(serviceName = "oms", workingFolder = "rrpairs/searchOrder", 
-			vrsConfig = @Config(value = "searchOrder-FinalV2.vrs", 
-				parameters = {
-						@Parameter(name = "port", value = "7002"), 
-						@Parameter(name = "basePath", value = "/")
-						}))
+	@DevTestVirtualServiceFromVrs(serviceName = "oms",
+			workingFolder = "rrpairs/searchOrder",
+			vrsConfig = @Config(value = "searchOrder-FinalV2.vrs",
+			parameters = {
+			@Parameter(name = "port", value = "7002"),
+			@Parameter(name = "basePath", value = "/") }))
 	@Test
 	public void createJsonServiceFromVrs() throws IOException, URISyntaxException {
 		int port = 7002;
 		String path = "/";
 		/* Test */
 		SoapClient soapclient = new SoapClient("localhost", String.valueOf(port));
-		File requestFile = new File(getClass().getClassLoader().getResource("rrpairs/searchOrder/searchOrder-Final-1-req.xml").toURI());
+		File requestFile = new File(
+				getClass().getClassLoader().getResource("rrpairs/searchOrder/searchOrder-Final-1-req.xml").toURI());
 		String request = FileUtils.readFileToString(requestFile, "UTF-8");
 		String response = soapclient.callJSONService(path, request);
 

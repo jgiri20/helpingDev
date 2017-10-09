@@ -13,13 +13,17 @@ This API will cover same scope as WirMock or MokServer</description>
 		<maven.compiler.target>1.6</maven.compiler.target>
 	</properties>
 	<distributionManagement>
-        <repository>
-            <id>local</id>
-            <url>file:///Users/gaspa03/git/devtest-mvn-repo</url>
-        </repository>
-    </distributionManagement>
+		<repository>
+			<id>local</id>
+			<url>file:///Users/gaspa03/git/devtest-mvn-repo</url>
+		</repository>
+	</distributionManagement>
 	<dependencies>
-
+		<dependency>
+			<groupId>com.ea.agentloader</groupId>
+			<artifactId>ea-agent-loader</artifactId>
+			<version>1.0.3</version>
+		</dependency>
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
@@ -72,16 +76,16 @@ This API will cover same scope as WirMock or MokServer</description>
 	</dependencies>
 	<build>
 		<plugins>
-		
-		<plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.1</version>
-            <configuration>
-                <source>${maven.compiler.source}</source>
-                <target>${maven.compiler.target}</target>
-            </configuration>
-        </plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
