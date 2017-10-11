@@ -11,7 +11,7 @@ import com.ca.devtest.sv.devtools.services.VirtualService;
  * @author gaspa03
  *
  */
-public interface MethodProcessorAnnotation {
+public interface ProcessorAnnotation {
 
 	/**
 	 * @return

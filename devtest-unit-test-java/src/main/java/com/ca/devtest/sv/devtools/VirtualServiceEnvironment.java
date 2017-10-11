@@ -63,16 +63,16 @@ public class VirtualServiceEnvironment {
 	public void deployService( VirtualService service) throws IOException {
 		
 		HttpClient httpClient = HttpClients.createDefault();
-		String urlPost=String.format(CREATE_VS_URI, getRegistryHostName(), getName());
-		System.out.println("");
+		String urlPost=String.format(service.getType().geturlPattern(), getRegistryHostName(), getName());
+
 		HttpPost post = new HttpPost(urlPost);
 		MultipartEntityBuilder builder = MultipartEntityBuilder.create();
-		FileBody contentBody = new FileBody(service.getPackedVirtualService(), ContentType.APPLICATION_JSON.getMimeType());
+		FileBody contentBody = new FileBody(service.getPackedVirtualService(), ContentType.APPLICATION_JSON);
 		builder.addPart("file", contentBody);
 		post.setEntity(builder.build());
-		Base64 b64 = new Base64();
+		
 		post.setHeader("Authorization",
-				String.format("Basic %s", new String(b64.encodeBase64(new String(userName+":"+password).getBytes()))));
+				String.format("Basic %s", new String(Base64.encodeBase64(new String(userName+":"+password).getBytes()))));
 
 	
 			HttpResponse response = httpClient.execute(post);

@@ -14,7 +14,7 @@ import java.lang.annotation.Target;
  * Define Virtual service using VRS fragment file
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
+@Target({ElementType.TYPE,ElementType.METHOD})
 @Repeatable(DevTestVirtualServicesFromVrs.class)
 public @interface DevTestVirtualServiceFromVrs {
 	String serviceName();

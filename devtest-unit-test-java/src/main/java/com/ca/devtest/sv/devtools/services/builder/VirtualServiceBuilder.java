@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.ca.devtest.sv.devtools.VirtualServiceEnvironment;
+import com.ca.devtest.sv.devtools.annotation.VirtualServiceType;
 import com.ca.devtest.sv.devtools.protocol.DataProtocolDefinition;
 import com.ca.devtest.sv.devtools.protocol.TransportProtocolDefinition;
 import com.ca.devtest.sv.devtools.protocol.builder.ParamatrizedBuilder;
@@ -21,7 +22,7 @@ import com.ca.devtest.sv.devtools.utils.VelocityRender;
  * @author gaspa03
  *
  */
-public  abstract class VirtualServiceBuilder<T>   implements ParamatrizedBuilder{
+public  abstract class VirtualServiceBuilder   implements ParamatrizedBuilder{
 	
 
 
@@ -30,6 +31,7 @@ public  abstract class VirtualServiceBuilder<T>   implements ParamatrizedBuilder
 	private  TransportProtocolDefinition transportProtocol;
 	private final String DEFAULT_SERVICE_PROPERTIES_TPL="<?xml version=\"1.0\" ?><recording><name>$vitrualService.serviceName</name><binary>false</binary><group>$vitrualService.group</group></recording>";
 	private final Map<String, String> parameters= new HashMap<String, String>();
+	private VirtualServiceType type=VirtualServiceType.RRPAIRS;
 	
 	public VirtualServiceBuilder(String name, VirtualServiceEnvironment vse){
 		super(); 
@@ -64,11 +66,26 @@ public  abstract class VirtualServiceBuilder<T>   implements ParamatrizedBuilder
 	 * @throws IOException 
 	 */
 	public final VirtualService build() throws IOException{
-		VirtualService  virtualService = new VirtualService(getServiceName(),getVse()); 
+		VirtualService  virtualService = new VirtualService(getServiceName(),getType(),getVse()); 
+	
 		virtualService.setPackedVirtualService(packVirtualService());
 		return virtualService;
 	}
 
+
+	/**
+	 * @return the type
+	 */
+	public final VirtualServiceType getType() {
+		return type;
+	}
+
+	/**
+	 * @param type the type to set
+	 */
+	public final void setType(VirtualServiceType type) {
+		this.type = type;
+	}
 
 	/**
 	 * @return the vse

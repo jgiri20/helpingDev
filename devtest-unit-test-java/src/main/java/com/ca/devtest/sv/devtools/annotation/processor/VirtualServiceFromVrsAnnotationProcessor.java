@@ -22,7 +22,7 @@ import com.ca.devtest.sv.devtools.utils.Utility;
  * @author gaspa03
  *
  */
-public class VirtualServiceFromVrsAnnotationProcessor implements MethodProcessorAnnotation {
+public class VirtualServiceFromVrsAnnotationProcessor implements ProcessorAnnotation {
 
 	/* (non-Javadoc)
 	 * @see com.ca.devtest.sv.devtools.annotation.processor.MethodProcessorAnnotation#process(com.ca.devtest.sv.devtools.DevTestClient, java.lang.annotation.Annotation)
@@ -48,7 +48,7 @@ public class VirtualServiceFromVrsAnnotationProcessor implements MethodProcessor
 			URL url = getClass().getClassLoader().getResource(virtualService.workingFolder());
 			File workingFolder = new File(url.toURI());
 			
-			VirtualServiceBuilder<?> virtualServiceBuilder = devTestClient.fromRRPairs(virtualService.serviceName(),workingFolder);
+			VirtualServiceBuilder virtualServiceBuilder = devTestClient.fromRRPairs(virtualService.serviceName(),workingFolder);
 			File vrsFile= new File(workingFolder,virtualService.vrsConfig().value());
 			// build Transport Protocol
 			TransportProtocolFromVrsBuilder transportBuilder = new TransportProtocolFromVrsBuilder(vrsFile);

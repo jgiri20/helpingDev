@@ -1,0 +1,90 @@
+{
+    "modifyDate": "2017-06-26T23:25:01+02:00",
+    "description": "Demo Lisa bank",
+    "appliedDPH": [{
+        "isRequest": true,
+        "isResponse": false,
+        "name": "Web Services (SOAP)",
+        "className": "com.itko.lisa.vse.stateful.protocol.ws.WSSOAPProtocolHandler",
+        "id": "BF0A8EFB5AB511E79866A45E60EBCF33",
+        "config": {},
+        "userConfigured": true
+    }],
+    "artifactGeneration": {
+        "allowDupSpecificTxns": false,
+        "basePath": "/",
+        "defaultNonLeafNavigation": "WIDE",
+        "defaultLeafNavigation": "LOOSE",
+        "vsmStyle": "EFFICIENT"
+    },
+    "statusDescription": "Saved",
+    "transportProtocol": {
+        "protocolId": "HTTP_GATEWAY",
+        "statelessTxns": false,
+        "deidentifyTxn": false,
+        "protocolConfig": {
+            "allowModifyHostHeader": false,
+            "targetEndpoint": {
+                "sslConfig": {
+                    "aliasPassword": "",
+                    "password": "",
+                    "filename": "",
+                    "bytes": "",
+                    "alias": "",
+                    "localFilename": "",
+                    "hash": 0
+                },
+                "port": 9080,
+                "host": "localhost",
+                "hash": 991027151,
+                "useSSL": false
+            },
+            "recordingEndpoint": {
+                "sslConfig": {
+                    "aliasPassword": "",
+                    "password": "",
+                    "filename": "",
+                    "bytes": "",
+                    "alias": "",
+                    "localFilename": "",
+                    "hash": 0
+                },
+                "port": 9081,
+                "host": "All",
+                "hash": 0,
+                "useSSL": false
+            }
+        },
+        "protocolVersion": "1.0"
+    },
+    "name": "LisaBank",
+    "bundleIds": [],
+    "saveVsConfig": {
+        "concurrentCapacity": 1,
+        "thinkTime": 100,
+        "groupTag": "demo",
+        "saveOption": "saveDeploy",
+        "leafNavigation": "Loose",
+        "allowDupSpecific": false,
+        "defaultNavigation": "Wide",
+        "createBaseline": false,
+        "vsmStyle": "efficient"
+    },
+    "validationMsgs": [{
+        "level": "INFO",
+        "category": "targetURLValidation",
+        "message": "target validated"
+    }],
+    "id": "736DDE5C5AB511E79866A45E60EBCF33",
+    "detectedDPH": [{
+        "isRequest": true,
+        "isResponse": false,
+        "name": "Web Services (SOAP)",
+        "className": "com.itko.lisa.vse.stateful.protocol.ws.WSSOAPProtocolHandler",
+        "id": "BF00F2085AB511E79866A45E60EBCF33",
+        "config": {},
+        "userConfigured": false
+    }],
+    "status": 9,
+    "createDate": "2017-06-26T23:21:44+02:00"
+}

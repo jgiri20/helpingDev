@@ -14,12 +14,13 @@ import java.lang.annotation.Target;
  *
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
+@Target({ElementType.TYPE,ElementType.METHOD})
 @Repeatable(DevTestVirtualServices.class)
 public @interface DevTestVirtualService {
 	String serviceName();
 	int port() default -1;
 	String basePath() default "/";
+	VirtualServiceType type() default VirtualServiceType.RRPAIRS;
 	Protocol transport() default @Protocol(ProtocolType.TPH_HTTP );
 	Protocol[] requestDataProtocol() default{ } ;
 	Protocol[] responseDataProtocol()default{ } ;

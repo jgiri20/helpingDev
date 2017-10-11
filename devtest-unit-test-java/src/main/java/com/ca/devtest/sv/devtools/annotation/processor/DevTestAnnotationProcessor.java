@@ -44,15 +44,27 @@ public class DevTestAnnotationProcessor {
 				virtualServer.login(), virtualServer.password(), virtualServer.groupName());
 
 	}
+	public  List<VirtualService> process(Class<?> clazz) throws VirtualServiceProcessorException {
 
+		Annotation[] annotations = clazz.getDeclaredAnnotations();
+		List<VirtualService> virtualServices = new ArrayList<VirtualService>();
+		for (Annotation annotation : annotations) {
+			// get Annotation processor 
+			ProcessorAnnotation processor = AnnotationProcessorFactory.getProcessor(annotation);
+			List<VirtualService> services=processor.process(devtestClient,annotation);
+			if( null!=services)
+			virtualServices.addAll(services);
+		}
+
+		return virtualServices;
+	}
 	public  List<VirtualService> process(Method method) throws VirtualServiceProcessorException {
 
 		Annotation[] annotations = method.getDeclaredAnnotations();
 		List<VirtualService> virtualServices = new ArrayList<VirtualService>();
-		MethodProcessorAnnotation methodProcessor = null;
 		for (Annotation annotation : annotations) {
 			// get Annotation processor 
-			MethodProcessorAnnotation processor = AnnotationProcessorFactory.getMetodProcessor(annotation);
+			ProcessorAnnotation processor = AnnotationProcessorFactory.getProcessor(annotation);
 			List<VirtualService> services=processor.process(devtestClient,annotation);
 			if( null!=services)
 			virtualServices.addAll(services);

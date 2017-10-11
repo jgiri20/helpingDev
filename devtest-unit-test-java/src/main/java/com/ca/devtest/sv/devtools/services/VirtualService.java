@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 
 import com.ca.devtest.sv.devtools.VirtualServiceEnvironment;
+import com.ca.devtest.sv.devtools.annotation.VirtualServiceType;
 
 /**
  * @author gaspa03
@@ -16,6 +17,7 @@ public final class VirtualService {
 	private final String name;
 	private final VirtualServiceEnvironment vse;
 	private File packedVirtualService=null;
+	private final VirtualServiceType type;
 	
 	public VirtualService( String name, VirtualServiceEnvironment vse) {
 		super();
@@ -23,9 +25,25 @@ public final class VirtualService {
 			throw new IllegalArgumentException("Service Name cannot be null");
 		this.name = name;
 		this.vse = vse;
+		type=VirtualServiceType.RRPAIRS;
+	}
+	
+	public VirtualService( String name, VirtualServiceType type,VirtualServiceEnvironment vse) {
+		super();
+		if (name == null)
+			throw new IllegalArgumentException("Service Name cannot be null");
+		this.name = name;
+		this.type=type;
+		this.vse = vse;
 		
 	}
 
+	/**
+	 * @return the type
+	 */
+	public final VirtualServiceType getType() {
+		return type;
+	}
 
 	/**
 	 * @param packedVirtualService the packedVirtualService to set

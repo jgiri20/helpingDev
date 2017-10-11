@@ -17,6 +17,7 @@ import com.ca.devtest.lisabank.demo.business.BankService;
 import com.ca.devtest.lisabank.wsdl.User;
 import com.ca.devtest.sv.devtools.annotation.DevTestVirtualServer;
 import com.ca.devtest.sv.devtools.annotation.DevTestVirtualService;
+import com.ca.devtest.sv.devtools.annotation.DevTestVirtualServices;
 import com.ca.devtest.sv.devtools.annotation.Protocol;
 import com.ca.devtest.sv.devtools.annotation.ProtocolType;
 import com.ca.devtest.sv.devtools.junit.VirtualServicesRule;
@@ -32,10 +33,9 @@ public class UserServiceIntegrationTest {
 	@Rule
 	public VirtualServicesRule rules = new VirtualServicesRule();
 
-	@DevTestVirtualService(serviceName = "UserServiceTest-EJB3UserControlBean", 
-			port = 9081, basePath = "/itkoExamples/EJB3UserControlBean",
-			workingFolder = "UserServiceTest/getListUser/EJB3UserControlBean",
-			requestDataProtocol = {@Protocol(ProtocolType.DPH_SOAP) })
+	@DevTestVirtualService(serviceName = "UserServiceTest-EJB3UserControlBean", port = 9081, basePath = "/itkoExamples/EJB3UserControlBean", workingFolder = "UserServiceTest/getListUser/EJB3UserControlBean", requestDataProtocol = {
+			@Protocol(ProtocolType.DPH_SOAP) })
+
 	@Test
 	public void getListUser() {
 		// Given
@@ -54,7 +54,6 @@ public class UserServiceIntegrationTest {
 
 	}
 
-	
 	/**
 	 * @param users
 	 */

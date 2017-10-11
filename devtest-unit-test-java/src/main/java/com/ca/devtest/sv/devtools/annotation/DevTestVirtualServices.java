@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
  *
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
+@Target({ElementType.TYPE,ElementType.METHOD})
 public @interface DevTestVirtualServices {
 	
 	DevTestVirtualService[] value() default{ } ;

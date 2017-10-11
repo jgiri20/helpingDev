@@ -17,9 +17,9 @@ public class AnnotationProcessorFactory {
 	 * @param annotation
 	 * @return
 	 */
-	public static MethodProcessorAnnotation getMetodProcessor(Annotation annotation) {
+	public static ProcessorAnnotation getProcessor(Annotation annotation) {
 		
-		MethodProcessorAnnotation processor=new NopMethodProcessor();
+		ProcessorAnnotation processor=new NopProcessor();
 		if( annotation instanceof DevTestVirtualService)
 			processor= new VirtualServiceAnnotationProcessor();
 		if(annotation instanceof DevTestVirtualServices)
@@ -33,5 +33,6 @@ public class AnnotationProcessorFactory {
 
 		return processor;
 	}
+	
 
 }

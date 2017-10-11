@@ -12,6 +12,7 @@ import com.ca.devtest.sv.devtools.protocol.TransportProtocolDefinitionImpl;
 import com.ca.devtest.sv.devtools.services.VirtualService;
 import com.ca.devtest.sv.devtools.services.builder.VirtualServiceBuilder;
 import com.ca.devtest.sv.devtools.services.builder.VirtualServiceRRPairsBuilder;
+import com.ca.devtest.sv.devtools.services.builder.VirtualServiceVSMVSIBuilder;
 
 /**
  * @author gaspa03
@@ -54,7 +55,16 @@ public class DevTestClient {
 		return new VirtualServiceRRPairsBuilder(serviceName, getVse(), rrPairsFolder);
 	}
 	
-	
+	/**
+	 * @param serviceName
+	 * @param rrPairsFolder
+	 * @return
+	 * @throws IOException
+	 */
+	public VirtualServiceBuilder fromVSMVSI(String serviceName, File workingFolder) throws IOException {
+		
+		return new VirtualServiceVSMVSIBuilder(serviceName, getVse(), workingFolder);
+	}
 
 	protected VirtualServiceEnvironment getVse() {
 		return vse;
