@@ -33,12 +33,13 @@ public final class VirtualServiceVSMVSIBuilder extends VirtualServiceBuilder {
 
 	protected File packVirtualService() throws IOException {
 
-		Map<String, String> config = new HashMap<String, String>();
+		Map<String, Object> config = new HashMap<String, Object>();
 		// add Info to maraudit File
 		config.put("dateOfMar", getDateOfMar());
 		config.put("hostname", getHostName());
 		config.put("serviceName", getServiceName());
-		config.putAll(getParameters());
+		config.put("virtualService", this);
+		
 		return PackMarFile.packVirtualService(getWorkingFolder(),config );
 	}
 

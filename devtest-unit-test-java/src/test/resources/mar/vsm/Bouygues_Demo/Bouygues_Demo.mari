@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 
 <MarInfo>
-<name>$serviceName</name>
+<name>$virtualService.group_$virtualService.serviceName</name>
 <type>VIRTUAL_SERVICE</type>
 <projectRoot>Bouygues_Demo</projectRoot>
 <optimized>true</optimized>
@@ -12,5 +12,6 @@
     <ThinkTimePercent>100</ThinkTimePercent>
     <AutoRestart>true</AutoRestart>
     <StartOnDeploy>true</StartOnDeploy>
+    <GroupTag>$virtualService.group</GroupTag>
 </deployInfo>
 </MarInfo>
