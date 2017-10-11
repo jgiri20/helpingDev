@@ -26,9 +26,7 @@ import com.ca.devtest.sv.devtools.services.VirtualService;
 public class VirtualServicesRule implements TestRule {
 
 	private static final Log LOGGER = LogFactory.getLog(VirtualServicesRule.class);
-	private List<VirtualService>  listVirtualServicesDeployed=new ArrayList<VirtualService>();
-	private boolean clazzVirtualServiceDeployed=false;
-	
+
 	public  VirtualServicesRule() {
 		
 	}
@@ -40,6 +38,7 @@ public class VirtualServicesRule implements TestRule {
 	 */
 	public Statement apply(final Statement base, final Description description) {
 
+		
 		
 		return new Statement() {
 
@@ -140,29 +139,7 @@ public class VirtualServicesRule implements TestRule {
 
 	}
 
-	/**
-	 * Find out SV annotation on class level
-	 * @param testClass
-	 * @throws SecurityException
-	 * @throws NoSuchMethodException
-	 */
-	private List<VirtualService> processClazzAnnotations(Description description) {
-		List<VirtualService> virtualServices = new ArrayList<VirtualService>();
-		try {
-			 LOGGER.debug("Process Clazzz annotation  "+description.getTestClass());
-			Class<?> testClazz = description.getTestClass();
-			DevTestAnnotationProcessor devtestProcessor=new DevTestAnnotationProcessor(testClazz);
-			virtualServices.addAll(devtestProcessor.process(testClazz));
-			
-		} catch (Exception error) {
-
-			throw new RuntimeException("Error when try to build Virtual Service over " + description.getDisplayName(),
-					error);
-		}
-
-		return virtualServices;
-
-	}
+	
 	/**
 	 * @param testClass
 	 * @return
@@ -172,5 +149,14 @@ public class VirtualServicesRule implements TestRule {
 		return null != clazz.getAnnotation(DevTestVirtualServer.class);
 
 	}
-
+	
+	@Override
+	/*
+	 * Undeploy Virtual service with scope classes
+	 * */
+	protected void finalize() throws Throwable {
+		
+		
+		super.finalize();
+	}
 }

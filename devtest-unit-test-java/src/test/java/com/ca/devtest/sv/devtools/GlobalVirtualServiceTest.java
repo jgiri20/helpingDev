@@ -1,6 +1,6 @@
 package com.ca.devtest.sv.devtools;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
 import org.junit.ClassRule;
 import org.junit.Rule;
@@ -12,6 +12,7 @@ import com.ca.devtest.sv.devtools.annotation.DevTestVirtualService;
 import com.ca.devtest.sv.devtools.annotation.DevTestVirtualServiceFromVrs;
 import com.ca.devtest.sv.devtools.annotation.Parameter;
 import com.ca.devtest.sv.devtools.annotation.VirtualServiceType;
+import com.ca.devtest.sv.devtools.junit.VirtualServiceClassScopeRule;
 import com.ca.devtest.sv.devtools.junit.VirtualServicesRule;
 
 @DevTestVirtualServer(deployServiceToVse = "VSE")
@@ -22,7 +23,7 @@ public class GlobalVirtualServiceTest {
 	public VirtualServicesRule rules = new VirtualServicesRule();
 	
 	@ClassRule
-	public static VirtualServicesRule clazzRule = new VirtualServicesRule();
+	public static VirtualServiceClassScopeRule clazzRule = new VirtualServiceClassScopeRule();
 	
 	@DevTestVirtualServiceFromVrs(serviceName = "demo", workingFolder = "rrpairs/soapWithVrs", vrsConfig = @Config(value = "transport.vrs", parameters = {
 			@Parameter(name = "port", value = "9002"), @Parameter(name = "basePath", value = "/lisa") }))
