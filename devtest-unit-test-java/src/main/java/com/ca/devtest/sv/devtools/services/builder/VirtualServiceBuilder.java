@@ -27,7 +27,7 @@ public abstract class VirtualServiceBuilder implements ParamatrizedBuilder {
 	private VirtualServiceEnvironment vse;
 	private String serviceName;
 	private TransportProtocolDefinition transportProtocol;
-	private final String DEFAULT_SERVICE_PROPERTIES_TPL = "<?xml version=\"1.0\" ?><recording><name${virtualService.deployedName}</name><binary>false</binary><group>$virtualService.group</group></recording>";
+	private final String DEFAULT_SERVICE_PROPERTIES_TPL = "<?xml version=\"1.0\" ?><recording><name>${virtualService.deployedName}</name><binary>false</binary><group>$virtualService.group</group></recording>";
 	private final Map<String, String> parameters = new HashMap<String, String>();
 	private VirtualServiceType type = VirtualServiceType.RRPAIRS;
 
