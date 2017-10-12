@@ -61,7 +61,7 @@ public final class VirtualServiceVSMVSIBuilder extends VirtualServiceBuilder {
 	 * @return
 	 */
 	private String getDateOfMar() {
-		SimpleDateFormat df = new SimpleDateFormat("YYYY-MM-dd.HH:mm:ss.SSS.Z");
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd.HH:mm:ss.SSS.Z");
 		
 		return df.format(new Date());
 	}

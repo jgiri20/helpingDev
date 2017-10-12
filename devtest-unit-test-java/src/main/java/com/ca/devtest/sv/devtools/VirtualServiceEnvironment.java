@@ -94,7 +94,7 @@ public class VirtualServiceEnvironment {
 	public void unDeployService(VirtualService service) throws IOException {
 		HttpClient httpClient = HttpClients.createDefault();
 		HttpDelete delete = new HttpDelete(String.format(DELETE_VS_URI, getRegistryHostName(),
-				getName(), service.getName()));
+				getName(), service.getDeployedName()));
 		Base64 b64 = new Base64();
 		delete.setHeader("Authorization",
 				String.format("Basic %s", new String(b64.encodeBase64(new String(userName+":"+password).getBytes()))));

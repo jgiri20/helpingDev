@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 
 <MarInfo>
-<name>$virtualService.group_$virtualService.serviceName</name>
+<name>${virtualService.deployedName}</name>
 <type>VIRTUAL_SERVICE</type>
 <projectRoot>Bouygues_Demo</projectRoot>
 <optimized>true</optimized>

@@ -15,7 +15,7 @@ import com.ca.devtest.sv.devtools.annotation.VirtualServiceType;
 import com.ca.devtest.sv.devtools.junit.VirtualServiceClassScopeRule;
 import com.ca.devtest.sv.devtools.junit.VirtualServicesRule;
 
-@DevTestVirtualServer(deployServiceToVse = "VSE")
+@DevTestVirtualServer(deployServiceToVse = "VSE",groupName="Test")
 @DevTestVirtualService(serviceName = "Proxy", type = VirtualServiceType.VSM, workingFolder = "mar/vsm/Bouygues_Demo")
 public class GlobalVirtualServiceTest {
 

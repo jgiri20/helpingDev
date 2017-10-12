@@ -15,6 +15,7 @@ import com.ca.devtest.sv.devtools.annotation.VirtualServiceType;
  */
 public final class VirtualService {
 	private final String name;
+	private String deployedName;
 	private final VirtualServiceEnvironment vse;
 	private File packedVirtualService=null;
 	private final VirtualServiceType type;
@@ -93,6 +94,18 @@ public final class VirtualService {
 		
 		getVse().unDeployService(this);
 		
+	}
+
+	public String getDeployedName() {
+		
+		return deployedName;
+	}
+
+	/**
+	 * @param deployedName the deployedName to set
+	 */
+	public void setDeployedName(String deployedName) {
+		this.deployedName = deployedName;
 	}
 
 	

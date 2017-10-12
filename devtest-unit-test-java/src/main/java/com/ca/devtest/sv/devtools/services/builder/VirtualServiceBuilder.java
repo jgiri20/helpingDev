@@ -29,7 +29,7 @@ public  abstract class VirtualServiceBuilder   implements ParamatrizedBuilder{
 	private  VirtualServiceEnvironment vse;
 	private  String serviceName;
 	private  TransportProtocolDefinition transportProtocol;
-	private final String DEFAULT_SERVICE_PROPERTIES_TPL="<?xml version=\"1.0\" ?><recording><name>$vitrualService.group_$vitrualService.serviceName</name><binary>false</binary><group>$vitrualService.group</group></recording>";
+	private final String DEFAULT_SERVICE_PROPERTIES_TPL="<?xml version=\"1.0\" ?><recording><name${virtualService.deployedName}</name><binary>false</binary><group>$virtualService.group</group></recording>";
 	private final Map<String, String> parameters= new HashMap<String, String>();
 	private VirtualServiceType type=VirtualServiceType.RRPAIRS;
 	
@@ -114,6 +114,12 @@ public  abstract class VirtualServiceBuilder   implements ParamatrizedBuilder{
 	public final String getGroup() {
 		return getVse().getGroup();
 	}
+	/**
+	 * @return the serviceName
+	 */
+	public final String getDeployedName() {
+		return getGroup()+"."+getServiceName();
+	}
 	
 	/**
 	 * @return
@@ -121,7 +127,7 @@ public  abstract class VirtualServiceBuilder   implements ParamatrizedBuilder{
 	protected String generateServicePropertiesContent() {
 		
 		Map<String, Object> config= new HashMap<String, Object>();
-		config.put("vitrualService", this);
+		config.put("virtualService", this);
 		return VelocityRender.render(DEFAULT_SERVICE_PROPERTIES_TPL, config);
 	}
 	
