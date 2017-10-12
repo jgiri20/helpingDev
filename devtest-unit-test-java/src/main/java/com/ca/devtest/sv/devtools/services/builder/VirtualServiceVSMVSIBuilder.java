@@ -39,6 +39,7 @@ public final class VirtualServiceVSMVSIBuilder extends VirtualServiceBuilder {
 		config.put("hostname", getHostName());
 		config.put("serviceName", getServiceName());
 		config.put("virtualService", this);
+		config.putAll(getParameters());
 		
 		return PackMarFile.packVirtualService(getWorkingFolder(),config );
 	}
