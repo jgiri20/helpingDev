@@ -20,6 +20,11 @@ public @interface DevTestVirtualServer {
 	 * @return registry serveur name by default localhost
 	 */
 	String registryHost() default "localhost";
+	
+	/**
+	 * @return protocol to access api
+	 */
+	String protocol() default "http";
 	/**
 	 * @return vse name by default VSE
 	 */

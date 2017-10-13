@@ -17,6 +17,7 @@ import com.ca.devtest.sv.devtools.junit.VirtualServicesRule;
 
 @DevTestVirtualServer(deployServiceToVse = "VSE",groupName="Test")
 @DevTestVirtualService(serviceName = "Proxy", type = VirtualServiceType.VSM, workingFolder = "mar/vsm/proto" )
+@DevTestVirtualService(serviceName = "LISA_BANK_DEMO", type = VirtualServiceType.VSM, workingFolder = "mar/vsm/lisabank" )
 public class GlobalVirtualServiceTest {
 
 	// handle VS with Class scope

@@ -14,6 +14,9 @@ public enum VirtualServiceType {
 		this.urlPattern = url;
 	}
 
+	/**
+	 * @return url pattern
+	 */
 	public String geturlPattern(){
 		return urlPattern;
 	}
