@@ -29,7 +29,7 @@ import com.ca.devtest.sv.devtools.utils.Utility;
  * @author gaspa03
  *
  */
-public class VirtualServiceAnnotationProcessor implements ProcessorAnnotation {
+public class VirtualServiceAnnotationProcessor implements AnnotationProcessor {
 
 	/*
 	 * (non-Javadoc)
@@ -52,6 +52,7 @@ public class VirtualServiceAnnotationProcessor implements ProcessorAnnotation {
 			VirtualServiceBuilder virtualServiceBuilder = null;
 			URL url = getClass().getClassLoader().getResource(virtualService.workingFolder());
 			File workingFolder = new File(url.toURI());
+			// TODO - move this branch to factory processor
 			if (virtualService.type().equals(VirtualServiceType.VSM)) {
 				virtualServiceBuilder= vsmBuilder(devTestClient,virtualService,workingFolder);
 			}else {

@@ -15,7 +15,7 @@ import com.ca.devtest.sv.devtools.services.VirtualService;
  * @author gaspa03
  *
  */
-public class NopProcessor implements ProcessorAnnotation {
+public class NopAnnotationProcessor implements AnnotationProcessor {
 
 	
 

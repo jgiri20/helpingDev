@@ -17,6 +17,7 @@ import java.util.zip.ZipOutputStream;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.filefilter.WildcardFileFilter;
+import org.apache.commons.lang.StringUtils;
 
 /**
  * @author gaspa03
@@ -30,9 +31,10 @@ public class PackMarFile {
 	 * @return
 	 * @throws IOException
 	 */
-	public static File packVirtualService(File workingFolder, @SuppressWarnings("rawtypes") Map config) throws IOException {
+	public static File packVirtualService(File workingFolder, String serviceName,
+			@SuppressWarnings("rawtypes") Map config) throws IOException {
 
-		File virtualServiceArchive = File.createTempFile("virtualServiceArchive", ".mar");
+		File virtualServiceArchive = File.createTempFile(serviceName, ".mar");
 		ZipOutputStream zip = null;
 		try {
 
@@ -43,34 +45,35 @@ public class PackMarFile {
 			fileWriter = new FileOutputStream(virtualServiceArchive);
 			zip = new ZipOutputStream(fileWriter);
 
-			FilenameFilter filter = new WildcardFileFilter(new String[] { "*.mari" });
-			File[] lstFile = workingFolder.listFiles(filter);
-			if (lstFile.length > 0) {
-
-				File mariFile = lstFile[0];
-
-				ZipEntry entry = new ZipEntry(".marinfo");
-				zip.putNextEntry(entry);
-				byte[] data = IOUtils.toByteArray(new FileInputStream(mariFile));
-				data = VelocityRender.render(IOUtils.toString(data, Charset.defaultCharset().name()), config)
-						.getBytes();
-				zip.write(data, 0, data.length);
-				zip.closeEntry();
-				
-				 entry = new ZipEntry(".maraudit");
-				zip.putNextEntry(entry);
-				 data = IOUtils.toByteArray(getMarAuditTpl());
-				data = VelocityRender.render(IOUtils.toString(data, Charset.defaultCharset().name()), config)
-						.getBytes();
-				zip.write(data, 0, data.length);
-				zip.closeEntry();
-
-			}
-
 			/*
 			 * add the folder to the zip
 			 */
-			addFolderToZip("", workingFolder, zip, config);
+			addFolderToZip("", serviceName, workingFolder, zip, config);
+
+				ZipEntry entry = new ZipEntry(".marinfo");
+				zip.putNextEntry(entry);
+				byte[] data = IOUtils.toByteArray(getMarinfoTpl());
+				data = VelocityRender.render(IOUtils.toString(data, Charset.defaultCharset().name()), config)
+						.getBytes();
+				zip.write(data, 0, data.length);
+				zip.closeEntry();
+
+				entry = new ZipEntry(".maraudit");
+				zip.putNextEntry(entry);
+				data = IOUtils.toByteArray(getMarAuditTpl());
+				data = VelocityRender.render(IOUtils.toString(data, Charset.defaultCharset().name()), config)
+						.getBytes();
+				zip.write(data, 0, data.length);
+				zip.closeEntry();
+
+				entry = new ZipEntry(serviceName+"/lisa.project");
+				zip.putNextEntry(entry);
+				data = IOUtils.toByteArray(getLisaProjectTpl());
+				data = VelocityRender.render(IOUtils.toString(data, Charset.defaultCharset().name()), config)
+						.getBytes();
+				zip.write(data, 0, data.length);
+				zip.closeEntry();
+			
 
 		} finally {
 
@@ -82,16 +85,35 @@ public class PackMarFile {
 		return virtualServiceArchive;
 	}
 
-	private static InputStream getMarAuditTpl() {
+	/**
+	 * @return
+	 */
+	private static InputStream getLisaProjectTpl() {
 		
+		return Thread.currentThread().getContextClassLoader().getResourceAsStream("mar/lisa.project.tpl");
+	}
+
+	/**
+	 * @return
+	 */
+	private static InputStream getMarAuditTpl() {
+
 		return Thread.currentThread().getContextClassLoader().getResourceAsStream("mar/maraudit.tpl");
+	}
+
+	/**
+	 * @return
+	 */
+	private static InputStream getMarinfoTpl() {
+
+		return Thread.currentThread().getContextClassLoader().getResourceAsStream("mar/marinfo.tpl");
 	}
 
 	/*
 	 * recursively add files to the zip files
 	 */
-	private static void addFileToZip(String path, File folder, ZipOutputStream zip, boolean flag, @SuppressWarnings("rawtypes") Map config)
-			throws IOException {
+	private static void addFileToZip(String path, String serviceName, File folder, ZipOutputStream zip, boolean flag,
+			@SuppressWarnings("rawtypes") Map config) throws IOException {
 
 		/*
 		 * if the folder is empty add empty folder to the Zip file
@@ -106,28 +128,50 @@ public class PackMarFile {
 				/*
 				 * if folder is not empty
 				 */
-				addFolderToZip(path, folder, zip, config);
+				addFolderToZip(path, serviceName, folder, zip, config);
 			} else {
 				/*
 				 * write the file to the output
 				 */
 				if (shouldPack(folder)) {
+
+					String ressource = path + "/" + folder.getName();
+
 					zip.putNextEntry(new ZipEntry(path + "/" + folder.getName()));
 
 					byte[] data = IOUtils.toByteArray(new FileInputStream(folder));
 					data = VelocityRender.render(IOUtils.toString(data, Charset.defaultCharset().name()), config)
 							.getBytes();
 					zip.write(data, 0, data.length);
+					updateConfig(config, ressource,serviceName);
 				}
 
 			}
 		}
 	}
 
+	/**
+	 * add in the context file reference
+	 * 
+	 * @param config
+	 * @param ressource
+	 * @param serviceName 
+	 */
+	private static void updateConfig(Map config, String ressource, String serviceName) {
+
+		ressource=StringUtils.replace(ressource, serviceName+"/", "");
+		if (FilenameUtils.wildcardMatch(ressource, "*.vsm")) {
+			
+			config.put("vsmLocation", ressource);
+		}
+		if (FilenameUtils.wildcardMatch(ressource, "*.config")) {
+			config.put("configLocation", ressource);
+		}
+	}
+
 	private static boolean shouldPack(File file) {
 
-		return FilenameUtils.wildcardMatch(file.getName(), "*.project")
-				|| FilenameUtils.wildcardMatch(file.getName(), "*.vsi")
+		return FilenameUtils.wildcardMatch(file.getName(), "*.vsi")
 				|| FilenameUtils.wildcardMatch(file.getName(), "*.vsm")
 				|| FilenameUtils.wildcardMatch(file.getName(), "*.config");
 	}
@@ -135,14 +179,15 @@ public class PackMarFile {
 	/*
 	 * add folder to the zip file
 	 */
-	private static void addFolderToZip(String path, File srcFolder, ZipOutputStream zip, @SuppressWarnings("rawtypes") Map config) throws IOException {
+	private static void addFolderToZip(String path, String serviceName, File srcFolder, ZipOutputStream zip,
+			@SuppressWarnings("rawtypes") Map config) throws IOException {
 
 		/*
 		 * check the empty folder
 		 */
 		if (srcFolder.list().length == 0) {
-			System.out.println(srcFolder.getName());
-			addFileToZip(path, srcFolder, zip, true, config);
+
+			addFileToZip(path, serviceName, srcFolder, zip, true, config);
 		} else {
 			/*
 			 * list the files in the folder
@@ -153,10 +198,10 @@ public class PackMarFile {
 
 			for (String fileName : files) {
 				if (path.equals("")) {
-					addFileToZip(srcFolder.getName(), new File(srcFolder + "/" + fileName), zip, false, config);
+					addFileToZip(serviceName, serviceName, new File(srcFolder + "/" + fileName), zip, false, config);
 				} else {
-					addFileToZip(path + "/" + srcFolder.getName(), new File(srcFolder + "/" + fileName), zip, false,
-							config);
+					addFileToZip(path + "/" + srcFolder.getName(), serviceName, new File(srcFolder + "/" + fileName),
+							zip, false, config);
 				}
 			}
 		}

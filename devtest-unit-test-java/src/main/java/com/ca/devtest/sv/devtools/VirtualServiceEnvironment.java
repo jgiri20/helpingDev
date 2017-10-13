@@ -57,6 +57,12 @@ public class VirtualServiceEnvironment {
 	}
 	
 	/**
+	 * @return
+	 */
+	public String getUserName(){
+		return userName;
+	}
+	/**
 	 * @param service
 	 * @throws IOException
 	 */

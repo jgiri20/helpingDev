@@ -16,23 +16,30 @@ import com.ca.devtest.sv.devtools.junit.VirtualServiceClassScopeRule;
 import com.ca.devtest.sv.devtools.junit.VirtualServicesRule;
 
 @DevTestVirtualServer(deployServiceToVse = "VSE",groupName="Test")
-@DevTestVirtualService(serviceName = "Proxy", type = VirtualServiceType.VSM, workingFolder = "mar/vsm/Bouygues_Demo")
+@DevTestVirtualService(serviceName = "Proxy", type = VirtualServiceType.VSM, workingFolder = "mar/vsm/proto" )
 public class GlobalVirtualServiceTest {
 
+	// handle VS with Class scope
+	@ClassRule
+	public static VirtualServiceClassScopeRule clazzRule = new VirtualServiceClassScopeRule();
+	//
 	@Rule
 	public VirtualServicesRule rules = new VirtualServicesRule();
 	
-	@ClassRule
-	public static VirtualServiceClassScopeRule clazzRule = new VirtualServiceClassScopeRule();
 	
-	@DevTestVirtualServiceFromVrs(serviceName = "demo", workingFolder = "rrpairs/soapWithVrs", vrsConfig = @Config(value = "transport.vrs", parameters = {
-			@Parameter(name = "port", value = "9002"), @Parameter(name = "basePath", value = "/lisa") }))
+	
+	@DevTestVirtualServiceFromVrs(serviceName = "demo", workingFolder = "rrpairs/soapWithVrs", 
+			vrsConfig = @Config(value = "transport.vrs",
+			parameters = { @Parameter(name = "port", value = "9002"), @Parameter(name = "basePath", value = "/lisa") }))
+	
+	
+	
 	@Test
 	public void test1() {
 		fail("Not yet implemented");
 	}
 
-	@DevTestVirtualServiceFromVrs(serviceName = "demo2", workingFolder = "rrpairs/soapWithVrs", vrsConfig = @Config(value = "transport.vrs", parameters = {
+	@DevTestVirtualServiceFromVrs(serviceName = "demo", workingFolder = "rrpairs/soapWithVrs", vrsConfig = @Config(value = "transport.vrs", parameters = {
 			@Parameter(name = "port", value = "9002"), @Parameter(name = "basePath", value = "/lisa") }))
 	@Test
 	public void test2() {

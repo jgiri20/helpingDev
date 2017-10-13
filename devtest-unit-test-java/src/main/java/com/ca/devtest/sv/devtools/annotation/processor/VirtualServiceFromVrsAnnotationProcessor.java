@@ -22,7 +22,7 @@ import com.ca.devtest.sv.devtools.utils.Utility;
  * @author gaspa03
  *
  */
-public class VirtualServiceFromVrsAnnotationProcessor implements ProcessorAnnotation {
+public class VirtualServiceFromVrsAnnotationProcessor implements AnnotationProcessor {
 
 	/* (non-Javadoc)
 	 * @see com.ca.devtest.sv.devtools.annotation.processor.MethodProcessorAnnotation#process(com.ca.devtest.sv.devtools.DevTestClient, java.lang.annotation.Annotation)

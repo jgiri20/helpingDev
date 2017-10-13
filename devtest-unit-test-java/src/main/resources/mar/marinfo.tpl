@@ -3,11 +3,11 @@
 <MarInfo>
 <name>${virtualService.deployedName}</name>
 <type>VIRTUAL_SERVICE</type>
-<projectRoot>Bouygues_Demo</projectRoot>
+<projectRoot>${virtualService.serviceName}</projectRoot>
 <optimized>true</optimized>
 <deployInfo>
-    <PrimaryAsset>VirtualServices/LisaBank.vsm</PrimaryAsset>
-    <Configuration>Configs/project.config</Configuration>
+    <PrimaryAsset>${vsmLocation}</PrimaryAsset>
+    <Configuration>${configLocation}</Configuration>
     <ConcurrentCapacity>1</ConcurrentCapacity>
     <ThinkTimePercent>100</ThinkTimePercent>
     <AutoRestart>true</AutoRestart>

@@ -12,7 +12,7 @@ import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
 import com.ca.devtest.sv.devtools.annotation.DevTestVirtualServer;
-import com.ca.devtest.sv.devtools.annotation.processor.DevTestAnnotationProcessor;
+import com.ca.devtest.sv.devtools.annotation.processor.AbstractAnnotationProcessor;
 import com.ca.devtest.sv.devtools.services.VirtualService;
 
 public class VirtualServiceClassScopeRule implements TestRule {
@@ -69,14 +69,14 @@ public class VirtualServiceClassScopeRule implements TestRule {
 		if (null != virtualServices) {
 			for (VirtualService virtualService : virtualServices) {
 				try {
-					LOGGER.debug("unDeploy virtual service " + virtualService.getName() + ".....");
+					LOGGER.debug("unDeploy virtual service " + virtualService.getDeployedName() + ".....");
 					virtualService.unDeploy();
-					LOGGER.debug("Virtual service " + virtualService.getName() + " unDeployed!");
+					LOGGER.debug("Virtual service " + virtualService.getDeployedName() + " unDeployed!");
 
 				} catch (Exception error) {
 
 					throw new RuntimeException(
-							"Error when try to unDeploy Virtual Service  " + virtualService.getName());
+							"Error when try to unDeploy Virtual Service  " + virtualService.getDeployedName());
 
 				}
 			}
@@ -96,11 +96,11 @@ public class VirtualServiceClassScopeRule implements TestRule {
 		if (null != virtualServices) {
 			for (VirtualService virtualService : virtualServices) {
 				try {
-					LOGGER.debug("Deploy virtual service " + virtualService.getName() + ".....");
+					LOGGER.debug("Deploy virtual service " + virtualService.getDeployedName() + ".....");
 					virtualService.deploy();
-					LOGGER.debug("Virtual service " + virtualService.getName() + " deployed!");
+					LOGGER.debug("Virtual service " + virtualService.getDeployedName() + " deployed!");
 				} catch (IOException e) {
-					throw new RuntimeException("Error when try to deploy Virtual Service  " + virtualService.getName());
+					throw new RuntimeException("Error when try to deploy Virtual Service  " + virtualService.getDeployedName());
 				}
 			}
 		}
@@ -119,7 +119,7 @@ public class VirtualServiceClassScopeRule implements TestRule {
 		try {
 			LOGGER.debug("Process Clazzz annotation  " + testClazz);
 
-			DevTestAnnotationProcessor devtestProcessor = new DevTestAnnotationProcessor(testClazz);
+			AbstractAnnotationProcessor devtestProcessor = new AbstractAnnotationProcessor(testClazz);
 			virtualServices.addAll(devtestProcessor.process(testClazz));
 
 		} catch (Exception error) {

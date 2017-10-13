@@ -16,7 +16,7 @@ import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
 import com.ca.devtest.sv.devtools.annotation.DevTestVirtualServer;
-import com.ca.devtest.sv.devtools.annotation.processor.DevTestAnnotationProcessor;
+import com.ca.devtest.sv.devtools.annotation.processor.AbstractAnnotationProcessor;
 import com.ca.devtest.sv.devtools.services.VirtualService;
 
 /**
@@ -123,7 +123,7 @@ public class VirtualServicesRule implements TestRule {
 		try {
 			 LOGGER.debug("Process annotation for method "+description.getMethodName());
 			Class<?> testClazz = description.getTestClass();
-			DevTestAnnotationProcessor devtestProcessor=new DevTestAnnotationProcessor(testClazz);
+			AbstractAnnotationProcessor devtestProcessor=new AbstractAnnotationProcessor(testClazz);
 			Method method = testClazz.getMethod(description.getMethodName(), new Class[] {});
 			virtualServices.addAll(devtestProcessor.process(method));
 			

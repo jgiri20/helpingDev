@@ -59,6 +59,13 @@ public abstract class VirtualServiceBuilder implements ParamatrizedBuilder {
 		this.transportProtocol = transportProtocol;
 		return this;
 	}
+	
+	/**
+	 * @return
+	 */
+	public String getUserName(){
+		return getVse().getUserName();
+	}
 
 	/**
 	 * @return

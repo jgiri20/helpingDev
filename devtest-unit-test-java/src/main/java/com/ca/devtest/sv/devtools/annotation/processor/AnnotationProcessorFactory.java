@@ -17,18 +17,18 @@ public class AnnotationProcessorFactory {
 	 * @param annotation
 	 * @return
 	 */
-	public static ProcessorAnnotation getProcessor(Annotation annotation) {
+	public static AnnotationProcessor getProcessor(Annotation annotation) {
 		
-		ProcessorAnnotation processor=new NopProcessor();
+		AnnotationProcessor processor=new NopAnnotationProcessor();
 		if( annotation instanceof DevTestVirtualService)
 			processor= new VirtualServiceAnnotationProcessor();
 		if(annotation instanceof DevTestVirtualServices)
-			processor= new DevTestVirtualServicesAnnotationProcessor();
+			processor= new VirtualServicesAnnotationProcessor();
 		if( annotation instanceof DevTestVirtualServiceFromVrs)
 			processor= new VirtualServiceFromVrsAnnotationProcessor(); 
 
 		if( annotation instanceof DevTestVirtualServicesFromVrs)
-			processor= new DevTestVirtualServicesFromVrsAnnotationProcessor(); 
+			processor= new VirtualServicesFromVrsAnnotationProcessor(); 
 					
 
 		return processor;

@@ -18,7 +18,7 @@ import com.ca.devtest.sv.devtools.services.VirtualService;
  * @author gaspa03
  *
  */
-public class DevTestVirtualServicesAnnotationProcessor implements ProcessorAnnotation {
+public class VirtualServicesAnnotationProcessor implements AnnotationProcessor {
 
 	/* (non-Javadoc)
 	 * @see com.ca.devtest.sv.devtools.annotation.processor.MethodProcessorAnnotation#process(com.ca.devtest.sv.devtools.DevTestClient, java.lang.annotation.Annotation)
@@ -39,7 +39,7 @@ public class DevTestVirtualServicesAnnotationProcessor implements ProcessorAnnot
 		
 		for (DevTestVirtualService vsAnnotation : virtualServicesAnnotation) {
 			// get Annotation processor 
-			ProcessorAnnotation processor = AnnotationProcessorFactory.getProcessor(vsAnnotation);
+			AnnotationProcessor processor = AnnotationProcessorFactory.getProcessor(vsAnnotation);
 			List<VirtualService> services=processor.process(devTestClient,vsAnnotation);
 			if( null!=services)
 			virtualServices.addAll(services);

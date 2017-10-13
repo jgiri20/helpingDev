@@ -83,9 +83,6 @@ public class PackVirtualService {
 		return virtualServiceArchive;
 	}
 
-	private static void copieRRPairs(File rrpairsFolder) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 }

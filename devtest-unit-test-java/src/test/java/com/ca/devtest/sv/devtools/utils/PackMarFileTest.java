@@ -16,7 +16,7 @@ public class PackMarFileTest {
 	public void test() throws Exception {
 		
  
-		File workingFolder = new File(getClass().getClassLoader().getResource("mar/vsm/Bouygues_Demo").toURI());
+		File workingFolder = new File(getClass().getClassLoader().getResource("mar/vsm/proto").toURI());
 		Map<String, String> config= new HashMap<String, String>();
 		
 		SimpleDateFormat df= new SimpleDateFormat("YYYY-MM-dd.HH:mm:ss.SSS.Z");
@@ -24,7 +24,7 @@ public class PackMarFileTest {
 		config.put("dateOfMar", df.format(new Date()));
 		config.put("hostname", getHostName());
 		
-		File zip = PackMarFile.packVirtualService(workingFolder, config);
+		File zip = PackMarFile.packVirtualService(workingFolder,"demo", config);
 		zip.delete();
 	}
 

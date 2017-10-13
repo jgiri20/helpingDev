@@ -33,7 +33,11 @@ public class DevTesClientRRPairs {
 	 * @throws URISyntaxException
 	 */
 
-	@DevTestVirtualService(serviceName = "lisa", port = 9001, basePath = "/lisa", workingFolder = "rrpairs/soap", requestDataProtocol = {
+	@DevTestVirtualService(serviceName = "lisa", port = 9001, basePath = "/lisa", workingFolder = "rrpairs/soap", 
+			parameters = {
+					@Parameter(name = "port", value = "8999"), 
+					@Parameter(name = "basePath", value = "/errorManagement") },
+			requestDataProtocol = {
 			@Protocol(ProtocolType.DPH_SOAP) })
 	@Test
 	public void createSoapService() throws IOException, URISyntaxException {
@@ -63,12 +67,10 @@ public class DevTesClientRRPairs {
 
 	}
 
-	@DevTestVirtualServiceFromVrs(serviceName = "errorManagement",
-			workingFolder = "rrpairs/errorManagement", 
-			vrsConfig = @Config(value = "errorManagement.vrs",
-			parameters = {
-			@Parameter(name = "port", value = "8999"), 
-			@Parameter(name = "basePath", value = "/errorManagement") }))
+	@DevTestVirtualServiceFromVrs(serviceName = "errorManagement", workingFolder = "rrpairs/errorManagement",
+
+			vrsConfig = @Config(value = "errorManagement.vrs", parameters = { @Parameter(name = "port", value = "8999"),
+					@Parameter(name = "basePath", value = "/errorManagement") }))
 	@Test
 	public void createErrorManagementSVFromVrs() throws IOException, URISyntaxException {
 		int port = 8999;
@@ -82,12 +84,8 @@ public class DevTesClientRRPairs {
 
 	}
 
-	@DevTestVirtualServiceFromVrs(serviceName = "oms",
-			workingFolder = "rrpairs/searchOrder",
-			vrsConfig = @Config(value = "searchOrder-FinalV2.vrs",
-			parameters = {
-			@Parameter(name = "port", value = "7002"),
-			@Parameter(name = "basePath", value = "/") }))
+	@DevTestVirtualServiceFromVrs(serviceName = "oms", workingFolder = "rrpairs/searchOrder", vrsConfig = @Config(value = "searchOrder-FinalV2.vrs", parameters = {
+			@Parameter(name = "port", value = "7002"), @Parameter(name = "basePath", value = "/") }))
 	@Test
 	public void createJsonServiceFromVrs() throws IOException, URISyntaxException {
 		int port = 7002;
