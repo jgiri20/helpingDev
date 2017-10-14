@@ -20,15 +20,15 @@ import com.ca.devtest.sv.devtools.services.VirtualService;
  * @author gaspa03
  *
  */
-public class AbstractAnnotationProcessor {
+public class DevTestVirtualServerAnnotationProcessor {
 
 	private final DevTestClient devtestClient;
-	private static final Log LOGGER = LogFactory.getLog(AbstractAnnotationProcessor.class);
+	private static final Log LOGGER = LogFactory.getLog(DevTestVirtualServerAnnotationProcessor.class);
 
 	/**
 	 * @param ownerClazz
 	 */
-	public AbstractAnnotationProcessor(Class<?> ownerClazz) {
+	public DevTestVirtualServerAnnotationProcessor(Class<?> ownerClazz) {
 		super();
 		devtestClient = buildDevtestClient(ownerClazz);
 
@@ -50,7 +50,7 @@ public class AbstractAnnotationProcessor {
 		List<VirtualService> virtualServices = new ArrayList<VirtualService>();
 		for (Annotation annotation : annotations) {
 			// get Annotation processor 
-			AnnotationProcessor processor = AnnotationProcessorFactory.getProcessor(annotation);
+			AnnotationProcessor processor = AnnotationProcessorFactory.getInstance().getProcessor(annotation);
 			List<VirtualService> services=processor.process(devtestClient,annotation);
 			if( null!=services)
 			virtualServices.addAll(services);
@@ -64,7 +64,7 @@ public class AbstractAnnotationProcessor {
 		List<VirtualService> virtualServices = new ArrayList<VirtualService>();
 		for (Annotation annotation : annotations) {
 			// get Annotation processor 
-			AnnotationProcessor processor = AnnotationProcessorFactory.getProcessor(annotation);
+			AnnotationProcessor processor = AnnotationProcessorFactory.getInstance().getProcessor(annotation);
 			List<VirtualService> services=processor.process(devtestClient,annotation);
 			if( null!=services)
 			virtualServices.addAll(services);

@@ -39,7 +39,7 @@ public class VirtualServicesAnnotationProcessor implements AnnotationProcessor {
 		
 		for (DevTestVirtualService vsAnnotation : virtualServicesAnnotation) {
 			// get Annotation processor 
-			AnnotationProcessor processor = AnnotationProcessorFactory.getProcessor(vsAnnotation);
+			AnnotationProcessor processor = AnnotationProcessorFactory.getInstance().getProcessor(vsAnnotation);
 			List<VirtualService> services=processor.process(devTestClient,vsAnnotation);
 			if( null!=services)
 			virtualServices.addAll(services);

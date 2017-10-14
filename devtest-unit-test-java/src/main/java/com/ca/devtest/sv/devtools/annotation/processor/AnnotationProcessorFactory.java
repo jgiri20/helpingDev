@@ -1,6 +1,8 @@
 package com.ca.devtest.sv.devtools.annotation.processor;
 
 import java.lang.annotation.Annotation;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.ca.devtest.sv.devtools.annotation.DevTestVirtualService;
 import com.ca.devtest.sv.devtools.annotation.DevTestVirtualServiceFromVrs;
@@ -13,26 +15,51 @@ import com.ca.devtest.sv.devtools.annotation.DevTestVirtualServicesFromVrs;
  */
 public class AnnotationProcessorFactory {
 
+	private Map<Class, Class> dicoProcessor = new HashMap<Class, Class>();
+
+	private static final AnnotationProcessorFactory INSTANCE = new AnnotationProcessorFactory();
+
+	
+	/**
+	 * @return
+	 */
+	public static AnnotationProcessorFactory getInstance(){
+		return INSTANCE;
+	}
+	
+	private AnnotationProcessorFactory() {
+		dicoProcessor.put(DevTestVirtualService.class, VirtualServiceAnnotationProcessor.class);
+		dicoProcessor.put(DevTestVirtualServices.class, VirtualServicesAnnotationProcessor.class);
+		dicoProcessor.put(DevTestVirtualServiceFromVrs.class, VirtualServiceFromVrsAnnotationProcessor.class);
+		dicoProcessor.put(DevTestVirtualServicesFromVrs.class, VirtualServicesFromVrsAnnotationProcessor.class);
+	}
+
 	/**
 	 * @param annotation
 	 * @return
 	 */
-	public static AnnotationProcessor getProcessor(Annotation annotation) {
+	public  AnnotationProcessor getProcessor(Annotation annotation) {
+		AnnotationProcessor processor=null;
+		if(dicoProcessor.containsKey(annotation.getClass())){
+			Class clazzProcessor= dicoProcessor.get(annotation.getClass());
+			try {
+				processor=(AnnotationProcessor)clazzProcessor.newInstance();
+			} catch (Exception e) {
+				
+			} 
+		}else{
+			processor=new NopAnnotationProcessor();
+		}
 		
-		AnnotationProcessor processor=new NopAnnotationProcessor();
-		if( annotation instanceof DevTestVirtualService)
-			processor= new VirtualServiceAnnotationProcessor();
-		if(annotation instanceof DevTestVirtualServices)
-			processor= new VirtualServicesAnnotationProcessor();
-		if( annotation instanceof DevTestVirtualServiceFromVrs)
-			processor= new VirtualServiceFromVrsAnnotationProcessor(); 
-
-		if( annotation instanceof DevTestVirtualServicesFromVrs)
-			processor= new VirtualServicesFromVrsAnnotationProcessor(); 
-					
-
 		return processor;
 	}
-	
 
+	
+	/**
+	 * @param annotation
+	 * @param processor
+	 */
+	public void addProcessor(Class annotation, Class processor){
+		dicoProcessor.put(annotation,processor);
+	}
 }

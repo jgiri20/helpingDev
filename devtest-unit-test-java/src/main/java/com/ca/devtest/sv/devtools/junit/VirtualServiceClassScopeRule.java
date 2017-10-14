@@ -12,7 +12,7 @@ import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
 import com.ca.devtest.sv.devtools.annotation.DevTestVirtualServer;
-import com.ca.devtest.sv.devtools.annotation.processor.AbstractAnnotationProcessor;
+import com.ca.devtest.sv.devtools.annotation.processor.DevTestVirtualServerAnnotationProcessor;
 import com.ca.devtest.sv.devtools.services.VirtualService;
 
 public class VirtualServiceClassScopeRule implements TestRule {
@@ -114,12 +114,12 @@ public class VirtualServiceClassScopeRule implements TestRule {
 	 * @throws SecurityException
 	 * @throws NoSuchMethodException
 	 */
-	private List<VirtualService> processClazzAnnotations(Class<?> testClazz) {
+	protected List<VirtualService> processClazzAnnotations(Class<?> testClazz) {
 		List<VirtualService> virtualServices = new ArrayList<VirtualService>();
 		try {
 			LOGGER.debug("Process Clazzz annotation  " + testClazz);
 
-			AbstractAnnotationProcessor devtestProcessor = new AbstractAnnotationProcessor(testClazz);
+			DevTestVirtualServerAnnotationProcessor devtestProcessor = new DevTestVirtualServerAnnotationProcessor(testClazz);
 			virtualServices.addAll(devtestProcessor.process(testClazz));
 
 		} catch (Exception error) {
