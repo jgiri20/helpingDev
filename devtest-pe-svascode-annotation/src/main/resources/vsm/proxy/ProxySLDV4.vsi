@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+
+<serviceImage id="1" name="ProxySLDV4" created="2015-07-17.18:50:37.714" lastModified="2015-10-05.14:37:31.236" version="8.3.0" buildNumber="8.3.0.241">
+<st>
+<t id="4" nd="true">
+<rq id="8" op="executerService" tl="OPERATION">
+<ag>
+<p n="arg0_STRING" t="arg:EQUALS;false;;;;">&lt;VS&gt;&lt;ET&gt;&lt;EXTTXMGT&gt;0&lt;/EXTTXMGT&gt;&lt;CIBLE&gt;&lt;IDIMPLEMENT&gt;LJAVA&lt;/IDIMPLEMENT&gt;&lt;ENVIRONMENT&gt;ENV_TUP_PWNOT_DE&lt;/ENVIRONMENT&gt;&lt;JEUDATA&gt;00&lt;/JEUDATA&gt;&lt;PROGRAMME&gt;recupererLesBrouillons&lt;/PROGRAMME&gt;&lt;SIGNATURE&gt;recupererLesBrouillons&lt;/SIGNATURE&gt;&lt;VERSION&gt;V2.1&lt;/VERSION&gt;&lt;TYPE&gt;LEC&lt;/TYPE&gt;&lt;/CIBLE&gt;&lt;/ET&gt;&lt;EA&gt;&lt;ORIGINE&gt;&lt;SERVICE&gt;recupererLesBrouillons&lt;/SERVICE&gt;&lt;DOMAINE&gt;D06InternetDE&lt;/DOMAINE&gt;&lt;CODEUTIL&gt;uinmcp29&lt;/CODEUTIL&gt;&lt;CODEUTILX&gt;&lt;/CODEUTILX&gt;&lt;IDRACF&gt;A330046&lt;/IDRACF&gt;&lt;TERRITOIRE&gt;00&lt;/TERRITOIRE&gt;&lt;COMPETENCE&gt;00&lt;/COMPETENCE&gt;&lt;/ORIGINE&gt;&lt;/EA&gt;&lt;EE&gt;&lt;INFOTECH&gt;&lt;IDCORRE&gt;D06InternetDE-recupererLesBrouillons-1430124183768&lt;/IDCORRE&gt;&lt;MODESOL&gt;&lt;/MODESOL&gt;&lt;/INFOTECH&gt;&lt;INFOAPP&gt;&lt;DATRAITE&gt;2015-04-27 10:43:03&lt;/DATRAITE&gt;&lt;EMETTEUR&gt;&lt;APP&gt;candidat&lt;/APP&gt;&lt;/EMETTEUR&gt;&lt;/INFOAPP&gt;&lt;INFOIDENT&gt;&lt;AUTEUR&gt;&lt;MODAUT&gt;&lt;/MODAUT&gt;&lt;UID&gt;&lt;/UID&gt;&lt;IDORG&gt;&lt;/IDORG&gt;&lt;CODORG&gt;&lt;/CODORG&gt;&lt;TYPEAUT&gt;&lt;/TYPEAUT&gt;&lt;INTID&gt;&lt;/INTID&gt;&lt;DEPT&gt;&lt;/DEPT&gt;&lt;/AUTEUR&gt;&lt;DOSSIER&gt;&lt;TYPEDOS&gt;&lt;/TYPEDOS&gt;&lt;IDDOS&gt;&lt;/IDDOS&gt;&lt;LIBDOS&gt;&lt;/LIBDOS&gt;&lt;/DOSSIER&gt;&lt;/INFOIDENT&gt;&lt;INFOFCT&gt;&lt;EVTORIG&gt;&lt;MODEVT&gt;&lt;/MODEVT&gt;&lt;FOURNINFO&gt;&lt;/FOURNINFO&gt;&lt;ORIGINFO&gt;&lt;/ORIGINFO&gt;&lt;JUST&gt;&lt;TYPEJUST&gt;&lt;/TYPEJUST&gt;&lt;DAJUST&gt;&lt;/DAJUST&gt;&lt;/JUST&gt;&lt;EVT&gt;&lt;TYPEEVT&gt;&lt;/TYPEEVT&gt;&lt;LIBEVT&gt;&lt;/LIBEVT&gt;&lt;/EVT&gt;&lt;/EVTORIG&gt;&lt;/INFOFCT&gt;&lt;/EE&gt;&lt;DONNEES&gt;&lt;CritereRecupererBrouillons&gt;&lt;idRci&gt;1080104489&lt;/idRci&gt;&lt;/CritereRecupererBrouillons&gt;&lt;/DONNEES&gt;&lt;/VS&gt;</p>
+</ag>
+</rq>
+<rs>
+<rp id="9" t="4">
+<bd chs="UTF-8">&lt;lisa.vse.java.response&gt;&#10;&lt;lisa.vse.java.response.result&gt;&#10;&lt;string&gt;{{=com.itko.util.XMLUtils.encodeString(fl_api_response.toString());}}&lt;/string&gt;&#10;&lt;/lisa.vse.java.response.result&gt;&#10;&lt;/lisa.vse.java.response&gt;</bd>
+</rp>
+</rs>
+</t>
+</st>
+<ucrr>
+<rp id="3" t="0">
+<bd chs="UTF-8">return com.itko.lisa.remote.instrument.Rules.NO_MATCH;</bd>
+</rp>
+</ucrr>
+<usrr>
+<rp id="2" t="0">
+<bd chs="UTF-8">return com.itko.lisa.remote.instrument.Rules.NO_MATCH;</bd>
+</rp>
+</usrr>
+</serviceImage>

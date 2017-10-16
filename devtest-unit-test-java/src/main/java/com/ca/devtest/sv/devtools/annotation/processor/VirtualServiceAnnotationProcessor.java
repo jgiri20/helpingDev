@@ -76,7 +76,7 @@ public class VirtualServiceAnnotationProcessor implements AnnotationProcessor {
 	 * @throws IOException
 	 * @throws URISyntaxException
 	 */
-	private VirtualServiceBuilder vsmBuilder(DevTestClient devTestClient, DevTestVirtualService virtualService,
+	protected VirtualServiceBuilder vsmBuilder(DevTestClient devTestClient, DevTestVirtualService virtualService,
 			File workingFolder) throws IOException, URISyntaxException{
 		
 		return devTestClient.fromVSMVSI(virtualService.serviceName(),workingFolder);
