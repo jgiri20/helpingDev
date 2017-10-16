@@ -1,0 +1,21 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>fr.pe.gssi.progiciel.oi043.plugins.oi043ascode</groupId>
+	<artifactId>devtest-pe-svascode-annotation</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>devtest-pe-svascode-annotation</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.ca.devtest.sv.devtools</groupId>
+			<artifactId>devtest-unit-test-java</artifactId>
+			<version>1.1.7-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>me.alexpanov</groupId>
+			<artifactId>free-port-finder</artifactId>
+			<version>1.0</version>
+		</dependency>
+	</dependencies>
+</project>
