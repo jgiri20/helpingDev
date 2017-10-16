@@ -8,22 +8,20 @@ import org.junit.Test;
 
 import com.ca.devtest.sv.devtools.annotation.Config;
 import com.ca.devtest.sv.devtools.annotation.DevTestVirtualServer;
-import com.ca.devtest.sv.devtools.annotation.DevTestVirtualService;
 import com.ca.devtest.sv.devtools.annotation.DevTestVirtualServiceFromVrs;
 import com.ca.devtest.sv.devtools.annotation.Parameter;
-import com.ca.devtest.sv.devtools.annotation.VirtualServiceType;
-import com.ca.devtest.sv.devtools.junit.VirtualServiceClassScopeRule;
 import com.ca.devtest.sv.devtools.junit.VirtualServicesRule;
 
 import fr.pe.gssi.progiciel.oi043.plugins.oi043ascode.annotation.DevTestProxySLDV4;
+import fr.pe.gssi.progiciel.oi043.plugins.oi043ascode.junit.DevTestProxySLDV4Rules;
 
 @DevTestVirtualServer(deployServiceToVse = "VSE",groupName="Test")
-@DevTestProxySLDV4()
+@DevTestProxySLDV4(devTestAgents = "ibbo8800_audep", port ="9002", environnement="ENV_LOCAL_NGUPI", configLD="src/test/resources/configLD.xml")
 public class GlobalVirtualServiceTest {
 
 	// handle VS with Class scope
 	@ClassRule
-	public static VirtualServiceClassScopeRule clazzRule = new VirtualServiceClassScopeRule();
+	public static DevTestProxySLDV4Rules clazzRule = new DevTestProxySLDV4Rules();
 	//
 	@Rule
 	public VirtualServicesRule rules = new VirtualServicesRule();
