@@ -40,8 +40,8 @@ public class AnnotationProcessorFactory {
 	 */
 	public  AnnotationProcessor getProcessor(Annotation annotation) {
 		AnnotationProcessor processor=null;
-		if(dicoProcessor.containsKey(annotation.getClass())){
-			Class clazzProcessor= dicoProcessor.get(annotation.getClass());
+		if(dicoProcessor.containsKey(annotation.annotationType())){
+			Class clazzProcessor= dicoProcessor.get(annotation.annotationType());
 			try {
 				processor=(AnnotationProcessor)clazzProcessor.newInstance();
 			} catch (Exception e) {
