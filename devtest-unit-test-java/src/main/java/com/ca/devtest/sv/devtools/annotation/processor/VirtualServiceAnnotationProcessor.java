@@ -50,6 +50,7 @@ public class VirtualServiceAnnotationProcessor implements AnnotationProcessor {
 
 		try {
 			VirtualServiceBuilder virtualServiceBuilder = null;
+			System.out.println(virtualService.workingFolder());
 			URL url = getClass().getClassLoader().getResource(virtualService.workingFolder());
 			File workingFolder = new File(url.toURI());
 			// TODO - move this branch to factory processor
