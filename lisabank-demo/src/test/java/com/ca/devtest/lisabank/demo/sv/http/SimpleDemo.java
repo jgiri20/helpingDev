@@ -8,7 +8,6 @@ import static org.junit.Assert.assertNotNull;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +16,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.ca.devtest.lisabank.demo.LisaBankClientApplication;
 import com.ca.devtest.lisabank.demo.business.BankService;
-import com.ca.devtest.lisabank.wsdl.Account;
 import com.ca.devtest.lisabank.wsdl.User;
 import com.ca.devtest.sv.devtools.annotation.DevTestVirtualServer;
 import com.ca.devtest.sv.devtools.annotation.DevTestVirtualService;
-import com.ca.devtest.sv.devtools.annotation.Parameter;
 import com.ca.devtest.sv.devtools.annotation.Protocol;
 import com.ca.devtest.sv.devtools.annotation.ProtocolType;
-import com.ca.devtest.sv.devtools.junit.VirtualServicesRule;
 
 /**
  * @author pascal.gasp@ca.com
@@ -32,7 +28,7 @@ import com.ca.devtest.sv.devtools.junit.VirtualServicesRule;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = LisaBankClientApplication.class)
-
+@DevTestVirtualServer(registryHost = "localhost", deployServiceToVse = "VSE")
 public class SimpleDemo {
 	static final Log logger = LogFactory.getLog(SimpleDemo.class);
 	@Autowired
